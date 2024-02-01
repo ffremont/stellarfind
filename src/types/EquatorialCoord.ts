@@ -1,0 +1,1 @@
+export type EquatoritalCoord = { ra: string, dec: string}
