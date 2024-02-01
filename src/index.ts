@@ -3,12 +3,12 @@ import { equatorialToHorizontal } from "./utils/celestrial";
 import yargs from 'yargs';
 
 const argv = yargs(process.argv.slice(2)).options({
-  a: { type: 'boolean', default: false },
-  b: { type: 'string', demandOption: true },
-  c: { type: 'number', alias: 'chill' },
-  d: { type: 'array' },
-  e: { type: 'count' },
-  f: { choices: ['1', '2', '3'] }
+  lat: { type: 'number', default: 46.31086734243457, alias: 'latitude',describe: 'Latitude du lieu'  },
+  lon: { type: 'number', default: -0.5236387303855696, alias: 'longitude',describe: 'Longitude du lieu'  },
+  alt: { type: 'number', default: 7, alias: 'altitude',describe: 'Altitude du lieu'  },
+
+  fromAz: { type: 'number', alias: 'fromAzimuth',describe: 'Azimuth de départ'  },
+  fromAlt: { type: 'number', alias: 'fromAltitude',describe: 'Altitude de départ'  },
 }).parse();
 console.log(argv);
 
