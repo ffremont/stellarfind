@@ -93,21 +93,21 @@ export const equatorialDecimalOf = (ra: string, dec: string) => {
  * @returns
  */
 export const equatorialToHorizontal = (
-  ra: string,
-  dec: string,
+  ra: number,
+  dec: number,
   date: Date = new Date(),
   latitude: number = 46.31086734243457,
   longitude: number = -0.5236387303855696,
   altitude: number = 7
 ): HorizontalCoord => {
   const observer = new Astronomy.Observer(latitude, longitude, altitude);
-  const decimalCoords = equatorialDecimalOf(ra ,dec);
+  //const decimalCoords = equatorialDecimalOf(ra ,dec);
 
   const hor = Astronomy.Horizon(
     new Date(date),
     observer,
-    decimalCoords.ra,
-    decimalCoords.dec,
+    (ra),
+    (dec),
     "normal"
   );
   return {
@@ -132,59 +132,7 @@ type horizontalByIntervalParams = {
     interval?: number;
   };
 };
-export const horizontalByInterval = ({
-  ra,
-  dec,
-  planetName,
-  options = {
-    date: new Date(),
-    lat: 46.3109436000504,
-    lon: -0.5235963998645734,
-    interval: 3600000 / 4,
-  },
-}: horizontalByIntervalParams): IntervalCoord[] => {
-  const { date, lat, lon, interval, } = options as any;
 
-  const { rise, set } = sunRiseOf(date, lat, lon);
-  const data = [];
-
-  if (rise && set) {
-    const newSet = new Date(set.getTime() + 3600000);
-    newSet.setMinutes(0);
-    newSet.setSeconds(0);
-
-    let cursor = newSet.getTime();
-    while (cursor < rise.getTime()) {
-      for (let i = 0; i < 3600000; i += interval) {
-        const d = new Date(cursor + i);
-        if (ra && dec) {
-          const coords = equatorialToHorizontal(
-            ra,
-            dec,
-            d,
-            lat,
-            lon
-          );
-          data.push({
-            at: new Date(cursor + i),
-            ...coords,
-          });
-        } else if (planetName) {
-          const coords = planetToHorizontal(planetName as any, d, lat, lon);
-
-          data.push({
-            at: new Date(cursor + i),
-            ...coords,
-          });
-        }
-      }
-
-      cursor += 3600000;
-    }
-  }
-
-  return data;
-};
 
 type planetName = "mars";
 
