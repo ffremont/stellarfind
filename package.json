@@ -1,12 +1,13 @@
 {
   "name": "stellarfind",
   "version": "1.0.0",
-  "description": "",
   "type": "commonjs",
+  "description": "",
   "main": "src/index.js",
   "scripts": {
     "run": "node --loader ts-node/esm --no-warnings src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
