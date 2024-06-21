@@ -1,6 +1,6 @@
-# Stellarfinder
+# stellarfind
 
-Stellarfinder est un outil innovant conçu pour aider les astronomes amateurs et professionnels à se repérer facilement dans le ciel en utilisant des coordonnées astronomiques et des images capturées. Ce projet utilise Node.js et des bibliothèques spécifiques pour traiter des images astronomiques et déterminer les coordonnées célestes.
+stellarfind est un outil innovant conçu pour aider les astronomes amateurs et professionnels à se repérer facilement dans le ciel en utilisant des coordonnées astronomiques et des images capturées. Ce projet utilise Node.js et des bibliothèques spécifiques pour traiter des images astronomiques et déterminer les coordonnées célestes.
 
 ## Fonctionnalités
 
@@ -18,7 +18,7 @@ Stellarfinder est un outil innovant conçu pour aider les astronomes amateurs et
 2. **Obtention des coordonnées GPS** :
    - Si la table équatoriale est présente, effectuer la remontée et en déduire les coordonnées GPS.
    - Ces coordonnées sont décalées de X degrés vers l'est (X étant l'inclinaison de la table).
-   - Ces coordonnées GPS sont essentielles pour Stellarfinder, car elles permettent de mesurer l'écart en degrés pour atteindre une cible (catalogue Messier, IC, ou NGC).
+   - Ces coordonnées GPS sont essentielles pour stellarfind, car elles permettent de mesurer l'écart en degrés pour atteindre une cible (catalogue Messier, IC, ou NGC).
 
 ## Prérequis
 
@@ -30,8 +30,8 @@ Stellarfinder est un outil innovant conçu pour aider les astronomes amateurs et
 Clonez le dépôt puis installez les dépendances :
 
 ```bash
-git clone https://github.com/votre-utilisateur/stellarfinder.git
-cd stellarfinder
+git clone https://github.com/votre-utilisateur/stellarfind.git
+cd stellarfind
 npm install
 ```
 
@@ -41,14 +41,14 @@ Pour une installation locale avec `npm link` :
 npm link
 ```
 
-Cette commande rend le binaire `stellarfinder` accessible globalement sur votre système.
+Cette commande rend le binaire `stellarfind` accessible globalement sur votre système.
 
 ## Utilisation
 
 ### Commande de base
 
 ```bash
-stellarfinder --target=m89 --fromRA=12:12:35.066 --fromDEC=+11:35:35.629
+stellarfind --target=m89 --fromRA=12:12:35.066 --fromDEC=+11:35:35.629
 ```
 
 ### Options de ligne de commande
@@ -68,35 +68,35 @@ stellarfinder --target=m89 --fromRA=12:12:35.066 --fromDEC=+11:35:35.629
 Pour surveiller un répertoire `/aa/bb` et cibler M89 :
 
 ```bash
-stellarfinder --target=m89 --watch=/aa/bb
+stellarfind --target=m89 --watch=/aa/bb
 ```
 
 ## Fonctionnalités avancées
 
 ### Surveillance d'un répertoire
 
-Si l'option `--watch` est spécifiée, Stellarfinder surveillera le répertoire donné pour des nouvelles images (fichiers `.png` ou `.jpg`). Lorsqu'une image est mise à jour, elle sera automatiquement traitée pour déterminer ses coordonnées célestes.
+Si l'option `--watch` est spécifiée, stellarfind surveillera le répertoire donné pour des nouvelles images (fichiers `.png` ou `.jpg`). Lorsqu'une image est mise à jour, elle sera automatiquement traitée pour déterminer ses coordonnées célestes.
 
 ### Résolution astrométrique
 
-Stellarfinder utilise des techniques de résolution astrométrique pour analyser les images et déterminer les coordonnées célestes. Ce processus permet d'associer une image donnée à des coordonnées spécifiques (RA et DEC), ce qui facilite la localisation précise des objets célestes dans le ciel. Les options `--scaleLow` et `--scaleHigh` (en arcsec/pixel) peuvent être utilisées pour affiner le processus de résolution.
+stellarfind utilise des techniques de résolution astrométrique pour analyser les images et déterminer les coordonnées célestes. Ce processus permet d'associer une image donnée à des coordonnées spécifiques (RA et DEC), ce qui facilite la localisation précise des objets célestes dans le ciel. Les options `--scaleLow` et `--scaleHigh` (en arcsec/pixel) peuvent être utilisées pour affiner le processus de résolution.
 
 ### Choix des options
 
-Vous pouvez utiliser Stellarfinder de deux manières principales :
+Vous pouvez utiliser stellarfind de deux manières principales :
 
 1. **Avec des coordonnées équatoriales** :
    - Utilisez les options `--target`, `--fromRA` et `--fromDEC` lorsque vous disposez des coordonnées équatoriales de l'objet céleste que vous souhaitez cibler.
 
    ```bash
-   stellarfinder --target=m89 --fromRA=12:12:35.066 --fromDEC=+11:35:35.629
+   stellarfind --target=m89 --fromRA=12:12:35.066 --fromDEC=+11:35:35.629
    ```
 
 2. **Avec la surveillance d'un répertoire** :
-   - Utilisez les options `--target` et `--watch` pour surveiller un répertoire contenant des images. Stellarfinder effectuera une résolution astrométrique pour extraire les coordonnées équatoriales des images.
+   - Utilisez les options `--target` et `--watch` pour surveiller un répertoire contenant des images. stellarfind effectuera une résolution astrométrique pour extraire les coordonnées équatoriales des images.
 
    ```bash
-   stellarfinder --target=m89 --watch=/aa/bb
+   stellarfind --target=m89 --watch=/aa/bb
    ```
 
-En résumé, Stellarfinder est un outil puissant pour l'astronomie assistée par visuel, permettant de se repérer avec précision dans le ciel grâce aux images capturées et aux coordonnées GPS déduites de la mise en station de la table équatoriale.
+En résumé, stellarfind est un outil puissant pour l'astronomie assistée par visuel, permettant de se repérer avec précision dans le ciel grâce aux images capturées et aux coordonnées GPS déduites de la mise en station de la table équatoriale.
