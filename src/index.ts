@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import yargs from "yargs";
 import Watcher from "node-watch";
-import { spawn } from "node:child_process";
+import assert from "node:assert";
 import { log } from "./utils/log";
 import { print } from "./utils/deltaPrint";
 import { run } from "./utils/astrometry";
@@ -22,6 +22,7 @@ const {
   watch,
   scaleLow,
   scaleHigh,
+  cpulimit
 } = yargs(process.argv)
   .options({
     a: {
@@ -46,6 +47,12 @@ const {
       alias: "scaleHigh",
       describe: "scale-high issue de solve-field",
     },
+    j: {
+      type: "number",
+      default: 60,
+      alias: "cpulimit",
+      describe: "cpulimit issue de solve-field",
+    },
     d: {
       type: "number",
       default: 46.31086,
@@ -54,7 +61,7 @@ const {
     },
     e: {
       type: "number",
-      default: 6.02363,
+      default: -0.523589 + 5.5,
       alias: "longitude",
       describe: "Longitude du lieu",
     },
@@ -68,13 +75,16 @@ const {
   .parse() as any;
 
 if (watch) {
+  assert(target, 'target doit être définit avec watch');
+  let running = false;
   Watcher(watch, { recursive: false }, (evt, filename) => {
     const lowerFilename = filename.toLowerCase();
     if (
+      !running && 
       evt == "update" &&
-      (lowerFilename.endsWith(".png") || lowerFilename.endsWith(".jpg"))
+      (lowerFilename.endsWith(".fit") || lowerFilename.endsWith(".fits"))
     ) {
-      let options = ["--no-plot", "--guess-scale", filename];
+      let options = ["--no-plot", '--cpulimit', cpulimit, "--guess-scale", filename];
       if (scaleLow >= 0 && scaleHigh >= 0) {
         options = [
           "--scale-units",
@@ -87,6 +97,8 @@ if (watch) {
         ];
       }
 
+      log.info('⚡️ Nouvelle analyse astrométrique...');
+      running=true;
       run(options)
         .then((eqCoords) => {
           log.info("\n\n");
@@ -100,10 +112,12 @@ if (watch) {
             arcsecPix: eqCoords.arcsecPix
           });
         })
-        .catch(() => log.error('❌ Résolution Astrométrique impossible'));
+        .catch(() => log.error('❌ Résolution Astrométrique impossible'))
+        .finally(() => running=false);
     }
   });
 } else {
+  assert(fromDEC && fromRA,  'fromDEC et fromRA doivent être définit avec target');
   print({
     fromDEC,
     fromRA,

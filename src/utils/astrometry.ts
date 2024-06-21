@@ -1,7 +1,8 @@
 import { spawn } from "node:child_process";
+import { log } from "./log";
 
 const REG_EXTRACT_RA_DEC =
-  /Field center: \(RA H:M:S, Dec D:M:S\) = \((\d{2}:\d{2}:\d{2}\.\d{3}),\s*(-?\d{2}:\d{2}:\d{2}\.\d{3})\)\./;
+  /Field center: \(RA H:M:S, Dec D:M:S\) = \((\d{2}:\d{2}:\d{2}\.\d{3}),\s*(-?\+?\d{2}:\d{2}:\d{2}\.\d{3})\)\./;
 const REQ_EXTRACT_PIX = /pixel scale (\d+\.\d+) arcsec\/pix\./;
 
 export const run = (options: string[]): Promise<{ra:string,dec:string,arcsecPix:number}> => {
@@ -21,7 +22,7 @@ export const run = (options: string[]): Promise<{ra:string,dec:string,arcsecPix:
       }
     });
     astrometryProcess.on("exit", (code) => {
-      if (code === 0) {
+      if (code === 0 && ra && dec) {
         resolve({ra,dec,arcsecPix});
       } else {
         reject("invalid code "+code);

@@ -1,12 +1,24 @@
 # Stellafind
 
-Stellafind est un outil pour vous aider à vous repérer facilement dans le ciel en utilisant des coordonnées astronomiques et des images. Ce projet utilise Node.js et des bibliothèques spécifiques pour traiter des images astronomiques et déterminer les coordonnées célestes.
+Stellafind est un outil innovant conçu pour aider les astronomes amateurs et professionnels à se repérer facilement dans le ciel en utilisant des coordonnées astronomiques et des images capturées. Ce projet utilise Node.js et des bibliothèques spécifiques pour traiter des images astronomiques et déterminer les coordonnées célestes.
 
 ## Fonctionnalités
 
 - Détection automatique et résolution astrométrique des images.
 - Suivi d'un répertoire pour des images mises à jour.
 - Utilisation de coordonnées d'objets célestes comme cibles.
+- Utilisation des coordonnées GPS basées sur la mise en station de la table équatoriale.
+
+## Déroulement d'une séance
+
+1. **Mise en place du matériel** :
+   - Assemblage et collimation du télescope.
+   - Éventuellement, mise en station de la table équatoriale.
+
+2. **Obtention des coordonnées GPS** :
+   - Si la table équatoriale est présente, effectuer la remontée et en déduire les coordonnées GPS.
+   - Ces coordonnées sont décalées de X degrés vers l'est (X étant l'inclinaison de la table).
+   - Ces coordonnées GPS sont essentielles pour Stellafind, car elles permettent de mesurer l'écart en degrés pour atteindre une cible (catalogue Messier, IC, ou NGC).
 
 ## Prérequis
 
@@ -79,3 +91,4 @@ Vous pouvez utiliser Stellafind de deux manières principales :
    node ./dist/index.js --target=m89 --watch=/aa/bb
    ```
 
+En résumé, Stellafind est un outil puissant pour l'astronomie assistée par visuel, permettant de se repérer avec précision dans le ciel grâce aux images capturées et aux coordonnées GPS déduites de la mise en station de la table équatoriale.
