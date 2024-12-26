@@ -17,6 +17,8 @@ const {
   longitude,
   altitude,
   target,
+  targetRA,
+  targetDEC,
   fromRA,
   fromDEC,
   watch,
@@ -31,6 +33,8 @@ const {
       alias: "target",
       describe: "[OBLIGATOIRE] Cible (ex: M31)",
     },
+    tra: { type: "string", alias: "targetRA", describe: "RA de destination" },
+    tdec: { type: "string", alias: "targetDEC", describe: "DEC de destination" },
     b: { type: "string", alias: "fromRA", describe: "RA de départ" },
     c: { type: "string", alias: "fromDec", describe: "DEC de départ" },
     w: { type: "string", alias: "watch", describe: "Watch un répertoire" },
@@ -61,7 +65,7 @@ const {
     },
     e: {
       type: "number",
-      default: -0.523589 + 5.5,
+      default: -0.523589,
       alias: "longitude",
       describe: "Longitude du lieu",
     },
@@ -109,10 +113,12 @@ if (watch) {
             longitude,
             altitude,
             target,
+            targetRA, 
+            targetDEC,
             arcsecPix: eqCoords.arcsecPix
           });
         })
-        .catch(() => log.error('❌ Résolution Astrométrique impossible'))
+        .catch((e) => log.error('❌ Résolution Astrométrique impossible',e))
         .finally(() => running=false);
     }
   });
@@ -121,6 +127,8 @@ if (watch) {
   print({
     fromDEC,
     fromRA,
+    targetDEC,
+    targetRA,
     latitude,
     longitude,
     altitude,

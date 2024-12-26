@@ -75,7 +75,7 @@ stellarfind --target=m89 --watch=/aa/bb
 
 ### Surveillance d'un répertoire
 
-Si l'option `--watch` est spécifiée, stellarfind surveillera le répertoire donné pour des nouvelles images (fichiers `.png` ou `.jpg`). Lorsqu'une image est mise à jour, elle sera automatiquement traitée pour déterminer ses coordonnées célestes.
+Si l'option `--watch` est spécifiée, stellarfind surveillera le répertoire donné pour des nouvelles images (fichiers `.fit` ou `.fits`). Lorsqu'une image est mise à jour, elle sera automatiquement traitée pour déterminer ses coordonnées célestes.
 
 ### Résolution astrométrique
 
@@ -93,10 +93,11 @@ Vous pouvez utiliser stellarfind de deux manières principales :
    ```
 
 2. **Avec la surveillance d'un répertoire** :
-   - Utilisez les options `--target` et `--watch` pour surveiller un répertoire contenant des images. stellarfind effectuera une résolution astrométrique pour extraire les coordonnées équatoriales des images.
+   - Utilisez les options `--target*` et `--watch` pour surveiller un répertoire contenant des images. stellarfind effectuera une résolution astrométrique pour extraire les coordonnées équatoriales des images.
 
    ```bash
    stellarfind --target=m89 --watch=/aa/bb
+   stellarfind --target=c2022-e2 --targetRA=12:12:35.066 --targetDEC=+11:35:35.629 --watch=/aa/bb
    ```
 
 En résumé, stellarfind est un outil puissant pour l'astronomie assistée par visuel, permettant de se repérer avec précision dans le ciel grâce aux images capturées et aux coordonnées GPS déduites de la mise en station de la table équatoriale.
