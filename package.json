@@ -1,9 +1,10 @@
 {
   "name": "stellarfind",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "commonjs",
-  "description": "",
+  "description": "stellarfind est un outil du domain du visuel assisté conçu pour aider les astronomes amateurs et professionnels à se repérer facilement dans le ciel en utilisant des coordonnées astronomiques et des images capturées.",
   "main": "dist/index.js",
+  "homepage": "https://github.com/ffremont/stellarfind",
   "bin": {
     "stellarfind": "./dist/index.js"
   },
@@ -13,7 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
-  "author": "",
+  "author": "Florent FREMONT",
   "license": "ISC",
   "dependencies": {
     "astronomy-engine": "^2.1.19",

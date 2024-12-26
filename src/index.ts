@@ -27,7 +27,7 @@ const {
   cpulimit
 } = yargs(process.argv)
   .options({
-    a: {
+    t: {
       type: "string",
       default: "m31",
       alias: "target",
@@ -35,41 +35,41 @@ const {
     },
     tra: { type: "string", alias: "targetRA", describe: "RA de destination" },
     tdec: { type: "string", alias: "targetDEC", describe: "DEC de destination" },
-    b: { type: "string", alias: "fromRA", describe: "RA de départ" },
-    c: { type: "string", alias: "fromDec", describe: "DEC de départ" },
+    fra: { type: "string", alias: "fromRA", describe: "RA de départ" },
+    fdec: { type: "string", alias: "fromDec", describe: "DEC de départ" },
     w: { type: "string", alias: "watch", describe: "Watch un répertoire" },
 
-    l: {
+    sl: {
       type: "number",
       default: -1,
       alias: "scaleLow",
       describe: "scale-low issue de solve-field",
     },
-    h: {
+    sh: {
       type: "number",
       default: -1,
       alias: "scaleHigh",
       describe: "scale-high issue de solve-field",
     },
-    j: {
+    c: {
       type: "number",
       default: 60,
       alias: "cpulimit",
       describe: "cpulimit issue de solve-field",
     },
-    d: {
+    la: {
       type: "number",
       default: 46.31086,
       alias: "latitude",
       describe: "Latitude du lieu",
     },
-    e: {
+    lo: {
       type: "number",
       default: -0.523589,
       alias: "longitude",
       describe: "Longitude du lieu",
     },
-    f: {
+    al: {
       type: "number",
       default: 7,
       alias: "altitude",

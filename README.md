@@ -1,6 +1,7 @@
 # stellarfind
 
-stellarfind est un outil innovant conçu pour aider les astronomes amateurs et professionnels à se repérer facilement dans le ciel en utilisant des coordonnées astronomiques et des images capturées. Ce projet utilise Node.js et des bibliothèques spécifiques pour traiter des images astronomiques et déterminer les coordonnées célestes.
+stellarfind est un outil innovant conçu pour aider les astronomes amateurs et professionnels à se repérer facilement dans le ciel en utilisant des coordonnées astronomiques et des images capturées. Ce projet utilise Node.js et des bibliothèques spécifiques pour traiter des images astronomiques et déterminer les coordonnées célestes.  
+👉 **Cet outil est très pratique lorsqu'on manipule un instrument sur base azimutale, comme un Dobson**.
 
 ## Fonctionnalités
 
@@ -30,7 +31,7 @@ stellarfind est un outil innovant conçu pour aider les astronomes amateurs et p
 Clonez le dépôt puis installez les dépendances :
 
 ```bash
-git clone https://github.com/votre-utilisateur/stellarfind.git
+git clone https://github.com/ffremont/stellarfind
 cd stellarfind
 npm install
 ```
@@ -53,15 +54,19 @@ stellarfind --target=m89 --fromRA=12:12:35.066 --fromDEC=+11:35:35.629
 
 ### Options de ligne de commande
 
-- `--target, -a` : Cible céleste (ex: `M31`). **Obligatoire**.
-- `--fromRA, -b` : Ascension droite de départ (RA).
-- `--fromDEC, -c` : Déclinaison de départ (DEC).
+- `--target, -t` : Cible céleste (ex: `M31`). **Obligatoire**.
+- `--tra, --targetRA`   RA de destination  
+- `--tdec, --targetDEC`  DEC de destination
+- `--fra, --fromRA`      RA de départ 
+- `--fdec, --fromDec`    DEC de départ 
 - `--watch, -w` : Surveiller un répertoire pour des images mises à jour.
-- `--scaleLow, -l` : Valeur basse de l'échelle issue de `solve-field` en arcsec/pixel.
-- `--scaleHigh, -h` : Valeur haute de l'échelle issue de `solve-field` en arcsec/pixel.
-- `--latitude, -d` : Latitude du lieu (par défaut: 46.31086).
-- `--longitude, -e` : Longitude du lieu (par défaut: 6.02363).
-- `--altitude, -f` : Altitude du lieu en mètres (par défaut: 7).
+- `--scaleLow, -sl` : Valeur basse de l'échelle issue de `solve-field` en arcsec/pixel.
+- `--scaleHigh, -sh` : Valeur haute de l'échelle issue de `solve-field` en arcsec/pixel.
+- `--latitude, -la` : Latitude du lieu (par défaut: 46.31086).
+- `--longitude, -lo` : Longitude du lieu (par défaut: 6.02363).
+- `--altitude, -al` : Altitude du lieu en mètres (par défaut: 7).
+
+
 
 ### Exemple
 
@@ -93,11 +98,17 @@ Vous pouvez utiliser stellarfind de deux manières principales :
    ```
 
 2. **Avec la surveillance d'un répertoire** :
-   - Utilisez les options `--target*` et `--watch` pour surveiller un répertoire contenant des images. stellarfind effectuera une résolution astrométrique pour extraire les coordonnées équatoriales des images.
+
+   - Via le nom logique (ngc, ic, messier) > utilisez les options `--target` et `--watch` pour surveiller un répertoire contenant des images. stellarfind effectuera une résolution astrométrique pour extraire les coordonnées équatoriales des images.
 
    ```bash
    stellarfind --target=m89 --watch=/aa/bb
    stellarfind --target=c2022-e2 --targetRA=12:12:35.066 --targetDEC=+11:35:35.629 --watch=/aa/bb
    ```
+   - Via les coordonnées équatorials> utilisez les options `--target*` et `--watch` pour surveiller un répertoire contenant des images. stellarfind effectuera une résolution astrométrique pour extraire les coordonnées équatoriales des images. Le terme "target" est informatif dans cette agencement de la ligne de commande.
 
-En résumé, stellarfind est un outil puissant pour l'astronomie assistée par visuel, permettant de se repérer avec précision dans le ciel grâce aux images capturées et aux coordonnées GPS déduites de la mise en station de la table équatoriale.
+   ```bash
+   stellarfind --target=c2022-e2 --targetRA=12:12:35.066 --targetDEC=+11:35:35.629 --watch=/aa/bb
+   ```
+
+En résumé, stellarfind est un outil puissant pour le visuel assisté, permettant de se repérer avec précision dans le ciel grâce aux images capturées et aux coordonnées GPS déduites de la mise en station de la table équatoriale.
